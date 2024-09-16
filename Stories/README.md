@@ -1,6 +1,6 @@
 # Public Domain Stories
 
-These are a collection of public domain stories ready to be processed by the software.
+These is a collection of public domain stories ready to be processed by the software.
 
 There are 2 conditions to process the stories.
 

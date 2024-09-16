@@ -8,18 +8,18 @@ This project is currently in alpha state and actively looking for alpha testers 
 
 ## SECTIONS
 
-- **PRESENTATION**: Project presentation.
-- **BACKEND SERVICES INSTALLATION INSTRUCTIONS**: Instructions to get the backend up and running.
-- **FRONTEND INSTALLATION INSTRUCTIONS**: Instructions to get the frontend up and running.
-- **SESSIONS**: Recorded sessions where we use the tool to create.
+- **[PRESENTATION](#presentation)**: Project presentation.
+- **[BACKEND SERVICES INSTALLATION INSTRUCTIONS](# BACKEND SERVICES INSTALLATION INSTRUCTIONS)**: Instructions to get the backend up and running.
+- **[FRONTEND INSTALLATION INSTRUCTIONS](# FRONT-END INSTALLATION INSTRUCTIONS)**: Instructions to get the frontend up and running.
+- **[SESSIONS](# SESSIONS)**: Recorded sessions where we use the tool to create.
 
 ## FOLDERS
 
-- **AI**: All the source code backend to run AI services.
-- **Backend**: All the source code and SQL database structure to locally store the projects.
-- **Stories**: Public domain example stories ready for the tool.
+- **[AI](/AI)**: All the source code backend to run AI services.
+- **[Backend](/Backend)**: All the source code and SQL database structure to locally store the projects.
+- **[Stories](/Stories)**: Public domain example stories ready for the tool.
 
-### 1. Presentation
+## PRESENTATION
 
 This tool consists of four key modules:
 
@@ -354,7 +354,7 @@ Of course, in all the cases you will also need to install the database to store 
 
 Now you can contact us, at `alpha.tester@infinitemonkeymachine.com`, to request the front-end software, we will create an account so you have access.
 
-## FRONTEND INSTALLATION INSTRUCTIONS
+## FRONT-END INSTALLATION INSTRUCTIONS
 
 After setting up the server and contacting us at `alpha.tester@infinitemonkeymachine.com` to get access, you can download the software and run it.
 
@@ -364,9 +364,9 @@ You can find all the prompts of this session: [Session Prompts](https://www.your
 
 Once you have access do the next initial steps:
 
-	- 1. Enter your credentials to start using the tool.
-	- 2. Create a local use: This user will be stored in the local database.
-	- 3. Set the IP address of the AI endpoints: Go to server settings and set the IP address of the AI services to your machine’s address.
+- 1. Enter your credentials to start using the tool.
+- 2. Create a local user: This user will be stored in the local database.
+- 3. Set the IP address of the AI endpoints: Go to server settings and set the IP address of the AI services to your machine’s address.
 
 You can now test the system by importing one of the public domain stories that are ready for the system. The book analysis should complete in about 20 minutes. The video shows the entire process, and more extensive sessions are available on our GitHub page.
 

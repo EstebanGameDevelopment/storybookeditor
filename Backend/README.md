@@ -8,5 +8,5 @@ The 2 files are
 
 - 1. **File "aibookeditor.zip":** 
 	The scripts that will provided the endpoints for your front-end to communicate with the local database.
-- 2. **File "aibookeditor.sql"**
+- 2. **File "aibookeditor.sql":**
 	MySQL database structure where all the data will be stored.

@@ -111,9 +111,9 @@ Just in case that you are not deploying Flux locally and OpenAI Dall.e 2 and 3 m
 ```
 self.stability_config = 'USER_YOUR_OWN_STABILITY_AI_API_KEY'
 ```
-- **2. Sceneario** If you want to use the character portrait generation you will have to create an account with Scenario provider and copy it here:
+- **2. Scenario:** If you want to use the character portrait generation you will have to create an account with Scenario provider and copy it here:
 ```
-self.scenario_config = 'USER_YOUR_OWN_SCENEARIO_AI_API_KEY'
+self.scenario_config = 'USER_YOUR_OWN_SCENARIO_AI_API_KEY'
 ```
 
 ### 5. The most basic set up: LLM Providers
@@ -127,36 +127,36 @@ $ python OpenAIEnglishServer.py
 
 This service will be listening in the port 5000. If you want to run any other provider just open to file to know in what port the service is listening.
 
-In order to test it, we are going to need to download Postman, a software that allows to test service endpoints. 
+In order to test it, we are going to need to download [Download Postman](https://www.postman.com/downloads/), a software that allows to test service endpoints. 
 
 - 1. Once installed create a new call
 - 2. Select POST mode
 - 3. Type the address where your service is located http://XXX.XXX.XXX.XXX:5000/ai/question (Where XXX.XXX.XXX.XXX is the local IP of that machine, for example 192.168.0.246)
 - 4. Go to the tab "Body" and then to "raw" and paste this:
 ```
-	{
-		"userid": 10,
-		"username": "not-used",
-		"password": "not-used",
-		"conversationid": "Any_Word_To_Keep_Track",
-		"question": "What can you tell me in less than 100 words about the city of Barcelona?",
-		"chain": true,
-		"debug": true
-	}
+{
+	"userid": 10,
+	"username": "not-used",
+	"password": "not-used",
+	"conversationid": "Any_Word_To_Keep_Track",
+	"question": "What can you tell me in less than 100 words about the city of Barcelona?",
+	"chain": true,
+	"debug": true
+}
 ```	
 - 5. Press "Send" button.
 	
 Since the option "chain" is true, this is a conversation and it will remember,  so you can do a follow up question by asking another thing like this:
 ```	
-	{
-		"userid": 10,
-		"username": "not-used",
-		"password": "not-used",
-		"conversationid": "Any_Word_To_Keep_Track",
-		"question": "What do you recommend me to visit there?",
-		"chain": true,
-		"debug": true
-	}
+{
+	"userid": 10,
+	"username": "not-used",
+	"password": "not-used",
+	"conversationid": "Any_Word_To_Keep_Track",
+	"question": "What do you recommend me to visit there?",
+	"chain": true,
+	"debug": true
+}
 ```	
 Since it works with memory it will remember that you asked about Barcelona and it will take it from there.
 
@@ -178,40 +178,40 @@ Now you are going to start the next process in a different terminal:
 $ python ServerSpeechGeneration.py
 ```
 
-Back to Postman, we first need to upload a voice track for the system to use it in the speech generation:
+Back to **Postman**, we first need to upload a voice track for the system to use it in the speech generation:
 
-	- 1. Create a new call
-	- 2. Select POST mode
-	- 3. Type the address where your service is located http://XXX.XXX.XXX.XXX:6000/ai/speech/voice
-	- 4. Go to the tab "Body" and then to "form-data" and fill the parameters:
+- 1. Create a new call
+- 2. Select POST mode
+- 3. Type the address where your service is located http://XXX.XXX.XXX.XXX:6000/ai/speech/voice
+- 4. Go to the tab "Body" and then to "form-data" and fill the parameters:
 ```	
-		"project": "My First Test",
-		"username": "not-used",
-		"voice": "VoiceTrack",
-		"language": "en"
-		"file": select the voice track you want to use.
+"project": "My First Test",
+"username": "not-used",
+"voice": "VoiceTrack",
+"language": "en"
+"file": select the voice track you want to use.
 ```			
-	- 5. Press "Send" button to upload the track.
+- 5. Press "Send" button to upload the track.
 
 Now that we have uploaded the voice track, we can proceed to use it to synthesize speech.
 
-	- 1. Create a new call
-	- 2. Select POST mode
-	- 3. Type the address where your service is located http://XXX.XXX.XXX.XXX:6000/ai/speech
-	- 4. Go to the tab "Body" and then to "raw" and paste this:
+- 1. Create a new call
+- 2. Select POST mode
+- 3. Type the address where your service is located http://XXX.XXX.XXX.XXX:6000/ai/speech
+- 4. Go to the tab "Body" and then to "raw" and paste this:
 ```		
-	{
-		"project": "My First Test",
-		"username": "not-used",
-		"password": "not-used",
-		"voice": "VoiceTrack",
-		"speech": "This is the text that I want you to speech",
-		"language": "en",
-		"emotion": "Happy",
-		"speed": 1
-	}
+{
+	"project": "My First Test",
+	"username": "not-used",
+	"password": "not-used",
+	"voice": "VoiceTrack",
+	"speech": "This is the text that I want you to speech",
+	"language": "en",
+	"emotion": "Happy",
+	"speed": 1
+}
 ```			
-	- 5. Press "Send" button.
+- 5. Press "Send" button.
 	
 Now, if everything has worked, you can save the result in and OGG file and you can play it. 
 
@@ -244,26 +244,26 @@ $ python3 demo_gr.py --name flux-schnell --device cuda --share
 
 There is a front-end you can use, but we are going to see how it's integrated with our project. 
 
-Now that we have our service running we can test it. Go back to Postman:
+Now that we have our service running we can test it. Go back to **Postman**:
 
-	- 1. Create a new call
-	- 2. Select POST mode
-	- 3. Type the address where your service is located http://XXX.XXX.XXX.XXX:5000/ai/image (It's the port 5000, make sure the script "OpenAIEnglishServer.py" is running)
-	- 4. Go to the tab "Body" and then to "raw" and paste this:
+- 1. Create a new call
+- 2. Select POST mode
+- 3. Type the address where your service is located http://XXX.XXX.XXX.XXX:5000/ai/image (It's the port 5000, make sure the script "OpenAIEnglishServer.py" is running)
+- 4. Go to the tab "Body" and then to "raw" and paste this:
 ```		
-	{
-		"userid": -1,
-		"username": "not-used",
-		"password": "not-used",
-		"description": "A beautiful rainbow in a happy world",
-		"provider": 0,
-		"exclude": "",
-		"steps": 10,
-		"width": 512,
-		"height": 512
-	}
+{
+	"userid": -1,
+	"username": "not-used",
+	"password": "not-used",
+	"description": "A beautiful rainbow in a happy world",
+	"provider": 0,
+	"exclude": "",
+	"steps": 10,
+	"width": 512,
+	"height": 512
+}
 ```			
-	- 5. Press "Send" button.
+- 5. Press "Send" button.
 
 If everything goes as expected you should be able to save the result into a PNG file and open it. 
 If you are using CUDA the image generation process should take around 30 seconds.
@@ -276,27 +276,27 @@ During the analysis of the text we can extract information in order to find out 
 
 So once you have started their service. We should run our code:
 ```
-> python3 ServerAudioGeneration.py
+$ python3 ServerAudioGeneration.py
 ```
 
 Now that we have our service running we can test it. Go back to Postman:
 
 Creating music:
 
-	- 1. Create a new call
-	- 2. Select POST mode
-	- 3. Type the address where your service is located http://XXX.XXX.XXX.XXX:5000/ai/music
-	- 4. Go to the tab "Body" and then to "raw" and paste this to create a melody:
+- 1. Create a new call
+- 2. Select POST mode
+- 3. Type the address where your service is located http://XXX.XXX.XXX.XXX:5000/ai/music
+- 4. Go to the tab "Body" and then to "raw" and paste this to create a melody:
 ```	
-	{
-		"userid": -1,
-		"username": "not-used",
-		"password": "not-used",		
-		"description": "a flute playing classical music",
-		"duration": 8
-	}
+{
+	"userid": -1,
+	"username": "not-used",
+	"password": "not-used",		
+	"description": "a flute playing classical music",
+	"duration": 8
+}
 ```		
-	-Press "Send" button.
+-Press "Send" button.
 
 Now, if everything has worked, you can save the result in and OGG file and you can play it. 
 
@@ -308,31 +308,26 @@ In order to store all the data, you are going to create, we are going to create 
 
 Once you got it up and running we need to make some changes for our project to work:
 
-	- 1. For the file "httpd.conf": 
+- 1. For the file "httpd.conf": 
 ```		
-	Listen 80 -> Listen 8080
+Listen 80 -> Listen 8080
 ```	
-
-	- 2. For the file "PHP.ini"
+- 2. For the file "PHP.ini"
 ```	
-	max_execution_time = 1800
-	max_input_time = 1800
-	memory_limit = 2048M
-	upload_max_filesize = 2048M
-	post_max_size = 2048M
+max_execution_time = 1800
+max_input_time = 1800
+memory_limit = 2048M
+upload_max_filesize = 2048M
+post_max_size = 2048M
 ```	
-	- 3. For the file "my.ini"
+- 3. For the file "my.ini"
 ```	
-	max_allowed_packet=1024M
+max_allowed_packet=1024M
 ```	
-
-	- 4. Now you can go to the PHPMyAdmin and create the database: aibookeditor -> utf8_general_ci
-
-	- 5. Next, you can import the basic database structure.
-
-	- 6. Finally we need to create the folder where there will be our script that will work as an endpoints to store the data in that database: **xammp\htdocs\aibookeditor**
-
-	- 7. Finally you will have to open the file and replace the global variable: xammp\htdocs\aibookeditor\ConfigurationUserManagement.php
+- 4. Now you can go to the PHPMyAdmin and create the database: aibookeditor -> utf8_general_ci
+- 5. Next, you can import the basic database structure.
+- 6. Finally we need to create the folder where there will be our script that will work as an endpoints to store the data in that database: **xammp\htdocs\aibookeditor**
+- 7. Finally you will have to open the file and replace the global variable: xammp\htdocs\aibookeditor\ConfigurationUserManagement.php
 ```	
 $SPEECH_UPLOAD_ADDRESS = "http://XXX.XXX.XXX.XXX:5000/ai/speech/voice"; // (Where XXX.XXX.XXX.XXX is the local IP of that machine, for example 192.168.0.246)
 ```	

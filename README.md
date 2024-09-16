@@ -296,7 +296,7 @@ Creating music:
 	"duration": 8
 }
 ```		
--Press "Send" button.
+- 5. Press "Send" button.
 
 Now, if everything has worked, you can save the result in and OGG file and you can play it. 
 
@@ -308,11 +308,11 @@ In order to store all the data, you are going to create, we are going to create 
 
 Once you got it up and running we need to make some changes for our project to work:
 
-- 1. For the file "httpd.conf": 
+- 1. For the file **httpd.conf**: 
 ```		
 Listen 80 -> Listen 8080
 ```	
-- 2. For the file "PHP.ini"
+- 2. For the file **PHP.ini**
 ```	
 max_execution_time = 1800
 max_input_time = 1800
@@ -320,14 +320,14 @@ memory_limit = 2048M
 upload_max_filesize = 2048M
 post_max_size = 2048M
 ```	
-- 3. For the file "my.ini"
+- 3. For the file **my.ini**
 ```	
 max_allowed_packet=1024M
 ```	
-- 4. Now you can go to the PHPMyAdmin and create the database: aibookeditor -> utf8_general_ci
-- 5. Next, you can import the basic database structure.
-- 6. Finally we need to create the folder where there will be our script that will work as an endpoints to store the data in that database: **xammp\htdocs\aibookeditor**
-- 7. Finally you will have to open the file and replace the global variable: xammp\htdocs\aibookeditor\ConfigurationUserManagement.php
+- 4. Now you can go to the **PHPMyAdmin** and create the database: **aibookeditor -> utf8_general_ci**
+- 5. Next, you can **import** the basic database structure.
+- 6. Finally we need to create the folder where there will be our **scripts that will work as endpoints** to store the data in that database: **xammp\htdocs\aibookeditor**
+- 7. Finally you will have to open the file and replace the global variable: **xammp\htdocs\aibookeditor\ConfigurationUserManagement.php**
 ```	
 $SPEECH_UPLOAD_ADDRESS = "http://XXX.XXX.XXX.XXX:5000/ai/speech/voice"; // (Where XXX.XXX.XXX.XXX is the local IP of that machine, for example 192.168.0.246)
 ```	
@@ -352,7 +352,7 @@ For example:
 
 Of course, in all the cases you will also need to install the database to store the data.
 
-Now you can contact us, at alpha.tester@infinitemonkeymachine.com, to request the front-end software, we will create an account so you have access.
+Now you can contact us, at `alpha.tester@infinitemonkeymachine.com`, to request the front-end software, we will create an account so you have access.
 
 ## FRONTEND INSTALLATION INSTRUCTIONS
 
@@ -362,12 +362,11 @@ Check the video: [Frontend Setup Video](https://youtu.be/-2tbtXpof7Q)
 
 You can find all the prompts of this session: [Session Prompts](https://www.yourvrexperience.com/apps/aibookeditor/AIBookEditorDisplayPrompts.php?session=The%20Time%20Machine)
 
-Once you have access, enter your credentials to start using the tool.
+Once you have access do the next initial steps:
 
-### Initial Steps:
-
-- **Create a local user**: This user will be stored in the local database.
-- **Set the IP address**: Go to server settings and set the IP address of the AI services to your machine’s address.
+	- 1. Enter your credentials to start using the tool.
+	- 2. Create a local use: This user will be stored in the local database.
+	- 3. Set the IP address of the AI endpoints: Go to server settings and set the IP address of the AI services to your machine’s address.
 
 You can now test the system by importing one of the public domain stories that are ready for the system. The book analysis should complete in about 20 minutes. The video shows the entire process, and more extensive sessions are available on our GitHub page.
 

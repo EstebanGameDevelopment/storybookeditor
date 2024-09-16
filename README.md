@@ -9,13 +9,13 @@ This project is currently in alpha state and actively looking for alpha testers 
 ## SECTIONS
 
 - **[PRESENTATION](#presentation)**: Project presentation.
-- **[BACKEND SERVICES INSTALLATION INSTRUCTIONS](#backend-services-installation-instructions)**: Instructions to get the backend up and running.
+- **[BACKEND SERVICES INSTALLATION INSTRUCTIONS](#back-end-services-installation-instructions)**: Instructions to get the backend up and running.
 - **[FRONTEND INSTALLATION INSTRUCTIONS](#front-end-installation-instructions)**: Instructions to get the frontend up and running.
 - **[SESSIONS](#sessions)**: Recorded sessions where we use the tool to create.
 
 ## FOLDERS
 
-- **[AI](/AI)**: All the source code backend to run AI services.
+- **[AI](/AI)**: All the back-end source code to run AI services.
 - **[Backend](/Backend)**: All the source code and SQL database structure to locally store the projects.
 - **[Stories](/Stories)**: Public domain example stories ready for the tool.
 
@@ -76,9 +76,9 @@ Head over to our GitHub page, and follow the instructions to install the back-en
 
 Once the services are up and running, contact us at [alpha.tester@infinitemonkeymachine.com](mailto:alpha.tester@infinitemonkeymachine.com), for access to the tool. After everything is set up, you’ll be able to create freely and help us determine the next steps.
 
-## BACKEND SERVICES INSTALLATION INSTRUCTIONS
+## BACK-END SERVICES INSTALLATION INSTRUCTIONS
 
-In the next video it's explained the process step-by-step about how to set up your backend:
+In the next video it's explained the process step-by-step about how to set up your back-end:
 
 [Backend Setup Presentation](https://youtu.be/alOxMe5vhKE)
 

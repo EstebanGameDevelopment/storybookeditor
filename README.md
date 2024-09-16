@@ -352,11 +352,11 @@ For example:
 
 Of course, in all the cases you will also need to install the database to store the data.
 
-Now you can contact us, at `alpha.tester@infinitemonkeymachine.com`, to request the front-end software, we will create an account so you have access.
+Now you can contact us, at [alpha.tester@infinitemonkeymachine.com](mailto:alpha.tester@infinitemonkeymachine.com), to request the front-end software, we will create an account so you have access.
 
 ## FRONT-END INSTALLATION INSTRUCTIONS
 
-After setting up the server and contacting us at `alpha.tester@infinitemonkeymachine.com` to get access, you can download the software and run it.
+After setting up the server and contacting us to get access, you can download the software and run it.
 
 Check the video: [Frontend Setup Video](https://youtu.be/-2tbtXpof7Q)
 

@@ -16,7 +16,7 @@ This project is currently in alpha state and actively looking for alpha testers 
 ## FOLDERS
 
 - **AI**: All the source code backend to run AI services.
-- **Backend**: All the source code and SQL database structure to store the projects.
+- **Backend**: All the source code and SQL database structure to locally store the projects.
 - **Stories**: Public domain example stories ready for the tool.
 
 ### 1. Presentation
@@ -70,19 +70,19 @@ With this flexibility, your story can reach various audiences in different forma
 
 ### 5. Looking for testers
 
-We are launching a beta test and seeking feedback from creative individuals interested in shaping the tool's future. Head over to our GitHub page, and follow the instructions to install the back-end services, which allow you to generate images, audio effects, and music locally for free. Once the services are up and running, contact us for access to the tool. After everything is set up, you’ll be able to create freely and help us determine the next steps.
+We are launching a beta test and seeking feedback from creative individuals interested in shaping the tool's future. 
+
+Head over to our GitHub page, and follow the instructions to install the back-end services, which allow you to generate images, audio effects, and music locally for free. 
+
+Once the services are up and running, contact us at [alpha.tester@infinitemonkeymachine.com](mailto:alpha.tester@infinitemonkeymachine.com), for access to the tool. After everything is set up, you’ll be able to create freely and help us determine the next steps.
 
 ## BACKEND SERVICES INSTALLATION INSTRUCTIONS
 
-In order to access the front-end application, you need to set up at least the basic services:
-- **3. LLM Provider**
-- **6. Database**
-
-Once you have these services (or more) up and running, contact us at [alpha.tester@infinitemonkeymachine.com](mailto:alpha.tester@infinitemonkeymachine.com), and we will check if you have set up your backend properly to give you access to the front-end.
-
-Watch the video to set up the backend:
+In the next video it's explained the process step-by-step about how to set up your backend:
 
 [Backend Setup Presentation](https://youtu.be/alOxMe5vhKE)
+
+Here are all the steps:
 
 ### 1. Hardware Setup
 
@@ -122,7 +122,7 @@ Now you need to run the services you are going to use.
 
 For example, if you want to use OpenAI ChatGPT-4-Omni-Mini. Run:
 ```
-$python OpenAIEnglishServer.py
+$ python OpenAIEnglishServer.py
 ```
 
 This service will be listening in the port 5000. If you want to run any other provider just open to file to know in what port the service is listening.
@@ -171,12 +171,12 @@ So go to their repository page [Coqui-ai TTS](https://github.com/coqui-ai/TTS) a
 Once finished the installation we need to create a sound of silence in order for our script to work. 
 So in the same folder where you are going to run the script, type:
 ```	
-> ffmpeg -f lavfi -i anullsrc=r=11025:cl=mono -t 0.5 silence.wav
+$ ffmpeg -f lavfi -i anullsrc=r=11025:cl=mono -t 0.5 silence.wav
 ```	
 Now you are going to start the next process in a different terminal:
-```	
-> python ServerSpeechGeneration.py
-```	
+```
+$ python ServerSpeechGeneration.py
+```
 
 Back to Postman, we first need to upload a voice track for the system to use it in the speech generation:
 

@@ -80,7 +80,7 @@ Once the services are up and running, contact us at [alpha.tester@infinitemonkey
 
 In the next video it's explained the process step-by-step about how to set up your back-end:
 
-[Backend Setup Presentation](https://youtu.be/alOxMe5vhKE)
+[Back-end Setup Presentation](https://youtu.be/alOxMe5vhKE)
 
 Here are all the steps:
 
@@ -358,7 +358,7 @@ Now you can contact us, at [alpha.tester@infinitemonkeymachine.com](mailto:alpha
 
 After setting up the server and contacting us to get access, you can download the software and run it.
 
-Check the video: [Frontend Setup Video](https://youtu.be/-2tbtXpof7Q)
+Check the video: [Front-end Setup Video](https://youtu.be/-2tbtXpof7Q)
 
 You can find all the prompts of this session: [Session Prompts](https://www.yourvrexperience.com/apps/aibookeditor/AIBookEditorDisplayPrompts.php?session=The%20Time%20Machine)
 

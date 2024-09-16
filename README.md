@@ -23,10 +23,10 @@ This project is currently in alpha state and actively looking for alpha testers 
 
 This tool consists of four key modules:
 
-- Audiobook Creation Helper
-- Creative Writing Helper
-- Translation Helper
-- Format Adaptation Helper
+- **Audiobook Creation Helper**
+- **Creative Writing Helper**
+- **Translation Helper**
+- **Format Adaptation Helper**
 
 ### 1. Audiobook Creation
 

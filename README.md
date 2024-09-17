@@ -379,5 +379,11 @@ In the following recorded sessions, we demonstrate how to use the tool:
 - [Format Adaptation Session](https://youtu.be/tZweJa1ZbUp)
 - [Creative Writing Session](https://youtu.be/gBweRa1ZGQx)
 
+## WEBSITE
+
+For more information visit our website:
+
+[www.infinitemonkeymachine.com](https://www.infinitemonkeymachine.com)
+
 
 

@@ -375,9 +375,9 @@ You can now test the system by importing one of the public domain stories that a
 In the following recorded sessions, we demonstrate how to use the tool:
 
 - [Audiobook Creation Session](https://youtu.be/ijXeka1MuBs)
-- [Translation Session](https://youtu.be/gThika1ZaOc)
-- [Format Adaptation Session](https://youtu.be/tZweJa1ZbUp)
-- [Creative Writing Session](https://youtu.be/gBweRa1ZGQx)
+- [Translation Session](https://youtu.be/jR-29dzuI1k)
+- [Format Adaptation Session](https://youtu.be/Jws3T95JlBQ)
+- [Creative Writing Session](https://youtu.be/lOf-nxdMXwY)
 
 ## WEBSITE
 

@@ -9,8 +9,8 @@ This project is currently in alpha state and actively looking for alpha testers 
 ## SECTIONS
 
 - **[PRESENTATION](#presentation)**: Project presentation.
-- **[BACK-END SERVICES INSTALLATION INSTRUCTIONS](#back-end-services-installation-instructions)**: Instructions to get the backend up and running.
-- **[FRONT-END INSTALLATION INSTRUCTIONS](#front-end-installation-instructions)**: Instructions to get the frontend up and running.
+- **[BACK-END SERVICES INSTALLATION INSTRUCTIONS](#back-end-services-installation-instructions)**: Instructions to get the back-end up and running.
+- **[FRONT-END INSTALLATION INSTRUCTIONS](#front-end-installation-instructions)**: Instructions to get the front-end up and running.
 - **[SESSIONS](#sessions)**: Recorded sessions where we use the tool to create.
 
 ## FOLDERS

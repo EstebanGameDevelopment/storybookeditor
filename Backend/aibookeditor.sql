@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 13, 2024 at 10:06 AM
+-- Generation Time: Sep 25, 2024 at 05:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -117,6 +117,21 @@ CREATE TABLE `bookspeech` (
   `chapter` int(11) NOT NULL,
   `page` int(11) NOT NULL,
   `data` mediumblob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookvideos`
+--
+
+CREATE TABLE `bookvideos` (
+  `id` int(11) NOT NULL,
+  `story` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `category` varchar(100) NOT NULL,
+  `size` int(11) NOT NULL,
+  `data` longblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -241,6 +256,12 @@ ALTER TABLE `booksounds`
 -- Indexes for table `bookspeech`
 --
 ALTER TABLE `bookspeech`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bookvideos`
+--
+ALTER TABLE `bookvideos`
   ADD PRIMARY KEY (`id`);
 
 --

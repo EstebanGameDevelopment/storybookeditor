@@ -85,15 +85,15 @@ class AILLMServer:
 
         self.cached_llm = None
         self.clientOpenAI = None
-        os.environ["OPENAI_API_KEY"] = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+        os.environ["OPENAI_API_KEY"] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
         # STABILITY CONFIGURATION
-        self.stability_config = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+        self.stability_config = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
         self.stability_base_url = "https://api.stability.ai/v2beta/stable-image/generate/sd3"
         self.stability_base_model = 'sd3-large-turbo'
 
         # SCENEARIO CONFIGURATION
-        self.scenario_config = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+        self.scenario_config = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
         self.scenario_model_landscape = 'NKStdSjYQjaeFiTK9ps8dg'  # It's one of our signature public models
         self.scenario_model_character = 'model_8FC4CAGPzXphAsbkA8rc4GRG' # The "Olivia" model generates images that showcase a character in various thematic settings
         self.scenario_base_url = "https://api.cloud.scenario.com/v1"
@@ -116,12 +116,14 @@ class AILLMServer:
             self.tokenizer = tiktoken.encoding_for_model("gpt-4o-mini")
             self.cost_per_token_input = 0.00000015 # GPT4-O-mini (input)
             self.cost_per_token_output = 0.0000006 # GPT4-O-mini (output)
+            # self.cost_per_token_input = 0.000005 # GPT4-O (input)
+            # self.cost_per_token_output = 0.000015 # GPT4-O (output)
             print (" +++LLM++++ Running OpenAI gpt-4o-mini LLM")
 
         # ++++ ANTHROPIC (NOT WORKING BECAUSE ANTHROPIC DOESN'T SUPPORT LANGCHAIN'S JSON PARSER FORMAT) ++++
         if enableAntrophic:
             self.provider_llm = ProviderLLM.ANTHROPIC
-            os.environ["ANTHROPIC_API_KEY"] = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+            os.environ["ANTHROPIC_API_KEY"] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
             # self.cached_llm = ChatAnthropic(model='claude-3-haiku-20240307')
             # self.cached_llm = ChatAnthropic(model='claude-3-sonnet-20240229')            
             # self.cached_llm = ChatAnthropic(model='claude-3-opus-20240229')
@@ -134,7 +136,7 @@ class AILLMServer:
         # ++++ MISTRAL-LARGE ++++
         if enableUltraMistral:
             self.provider_llm = ProviderLLM.MISTRAL
-            os.environ["MISTRAL_API_KEY"] = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+            os.environ["MISTRAL_API_KEY"] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
             self.cached_llm = ChatMistralAI(model="mistral-large-latest")
             self.tokenizer = MistralTokenizer.from_model("mistral-large-latest")
             self.cost_per_token_input = 0.000003  # mistral-large-latest (input)
@@ -144,7 +146,7 @@ class AILLMServer:
         # ++++ MISTRAL-NEMO ++++
         if enableMistral:
             self.provider_llm = ProviderLLM.MISTRAL
-            os.environ["MISTRAL_API_KEY"] = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+            os.environ["MISTRAL_API_KEY"] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
             self.cached_llm = ChatMistralAI(model="open-mistral-nemo-2407")
             self.tokenizer = MistralTokenizer.from_model("mistral-large-latest")
             self.cost_per_token_input = 0.0000003  # mistral-nemo (input)
@@ -154,7 +156,7 @@ class AILLMServer:
         # ++++ GOOGLE GEMINI-FLASH ++++
         if enableUltraGoogle:
             self.provider_llm = ProviderLLM.GOOGLE
-            os.environ["GOOGLE_API_KEY"] = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+            os.environ["GOOGLE_API_KEY"] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
             self.cached_llm = ChatGoogleGenerativeAI(model="gemini-pro")
             self.tokenizer_google = tokenization.get_tokenizer_for_model("gemini-1.0-pro-002")
             self.cost_per_token_input = 0.000003  # gemini-pro (input)
@@ -164,7 +166,7 @@ class AILLMServer:
         # ++++ GOOGLE GEMINI-FLASH ++++
         if enableGoogle:
             self.provider_llm = ProviderLLM.GOOGLE
-            os.environ["GOOGLE_API_KEY"] = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+            os.environ["GOOGLE_API_KEY"] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
             self.cached_llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash")
             self.tokenizer_google = tokenization.get_tokenizer_for_model("gemini-1.0-pro-002")
             self.cost_per_token_input = 0.00000035  # gemini-1.5-flash (input)
@@ -206,12 +208,6 @@ class AILLMServer:
         self.templateTranslation = templateTranslation
         self.chainFormatTranslateToken = promptFormatTranslateToken | self.cached_llm | parserFormatTranslateToken
 
-        # ++++ Init COQUI TTS ++++
-        #if self.enablePiper is False:
-        #    self.deviceTTS = "cuda" if torch.cuda.is_available() else "cpu"
-        #    print(TTS().list_models())
-        #    self.tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2").to(self.deviceTTS)
-            
         self.app.add_url_rule('/store', 'store_value', self.store_value, methods=['POST'])
         self.app.add_url_rule('/init_db', 'init_db', self.init_db, methods=['GET'])
         self.app.add_url_rule('/retrieve', 'retrieve_values', self.retrieve_values, methods=['GET'])
@@ -515,7 +511,7 @@ class AILLMServer:
                 
                 input_texts = [msg.content for msg in conversation.memory.buffer if msg.type == "human"]
                 output_texts = [msg.content for msg in conversation.memory.buffer if msg.type == "ai"]
-                cost = self.calculate_array_cost(input_texts, output_texts)
+                self.store_last_operation_cost(username + "_cost", 0)
                 
                 historyUpdated = self.sqlFunctions.add_new_message(historyJSON, question, response)
             
@@ -524,14 +520,14 @@ class AILLMServer:
                 response = self.cached_llm.invoke(question)
                 if isinstance(response, AIMessage):
                     response = response.content
-                    cost = self.calculate_cost(question, response)
+                    self.store_last_operation_cost(username + "_cost", self.calculate_cost(question, str(response)))
 
             print (response)
 
             if args.get("debug", default=False, type=bool):
                     print("AI response received...")
 
-            return jsonify({"cost": cost, "response": response})
+            return response
 
     def question_history(self):
             args = request.args

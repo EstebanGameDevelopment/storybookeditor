@@ -230,6 +230,7 @@ class InstructionsAI:
         self.urlSpeechGeneration = "http://0.0.0.0:6000"    
         self.urlImageGeneration = "http://0.0.0.0:7860"             
         self.urlFluxImageGeneration = "http://0.0.0.0:7869"
+        # self.urlFluxImageGeneration = "https://f26be2c194c343be51.gradio.live"         
         self.databaseAlchemy = 'sqlite:///aibookeditordata_en.db'
         self.voicesLanguage = '/home/esteban/Workspace/Flask/wav_voices/en'  # Set this to your desired directory
         self.templateQuestion = """In English language, the AI should follow the instructions and requests provided by the human.
@@ -400,9 +401,9 @@ class InstructionsAI:
 
         # ++++++++++++++++++++
         # ++ TRANSLATE TEXT ++ 
-        self.templateTranslation = """The AI should translate the text to English language using the information provided by the user.
+        self.templateTranslation = """The AI must translate the text contained within the XML tag <textsource> into English.
 
                     Current conversation:
                     {history}
-                    Human: {input}
+                    <textsource> {input} </textsource>
                     AI Assistant:"""

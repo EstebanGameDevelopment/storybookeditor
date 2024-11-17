@@ -365,9 +365,9 @@ class InstructionsAI:
 
         # ++++++++++++++++++++
         # ++ TRANSLATE TEXT ++ 
-        self.templateTranslation = """ИИ должен перевести текст на русский язык, используя информацию, предоставленную пользователем.
+        self.templateTranslation = """ИИ должен перевести текст, содержащийся внутри тега XML <textsource>, на русский язык.
 
                     Текущий разговор:
                     {history}
-                    Человек: {input}
+                    <textsource> {input} </textsource>
                     ИИ-ассистент:"""   

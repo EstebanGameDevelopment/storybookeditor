@@ -95,7 +95,7 @@ class AILLMServer:
         # SCENEARIO CONFIGURATION
         self.scenario_config = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
         self.scenario_model_landscape = 'NKStdSjYQjaeFiTK9ps8dg'  # It's one of our signature public models
-        self.scenario_model_character = 'model_8FC4CAGPzXphAsbkA8rc4GRG' # The "Olivia" model generates images that showcase a character in various thematic settings
+        self.scenario_model_character = 'model_B6irErs5ZDuCxrBootfDRShn' # The "Olivia" model generates images that showcase a character in various thematic settings        
         self.scenario_base_url = "https://api.cloud.scenario.com/v1"
         
         # ++++ OPENAI CHATGPT OMNI ++++
@@ -116,22 +116,14 @@ class AILLMServer:
             self.tokenizer = tiktoken.encoding_for_model("gpt-4o-mini")
             self.cost_per_token_input = 0.00000015 # GPT4-O-mini (input)
             self.cost_per_token_output = 0.0000006 # GPT4-O-mini (output)
-            # self.cost_per_token_input = 0.000005 # GPT4-O (input)
-            # self.cost_per_token_output = 0.000015 # GPT4-O (output)
             print (" +++LLM++++ Running OpenAI gpt-4o-mini LLM")
 
         # ++++ ANTHROPIC (NOT WORKING BECAUSE ANTHROPIC DOESN'T SUPPORT LANGCHAIN'S JSON PARSER FORMAT) ++++
         if enableAntrophic:
             self.provider_llm = ProviderLLM.ANTHROPIC
             os.environ["ANTHROPIC_API_KEY"] = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-            # self.cached_llm = ChatAnthropic(model='claude-3-haiku-20240307')
-            # self.cached_llm = ChatAnthropic(model='claude-3-sonnet-20240229')            
-            # self.cached_llm = ChatAnthropic(model='claude-3-opus-20240229')
             self.cached_llm = ChatAnthropic(model='claude-3-5-sonnet-20240620')
             print (" +++LLM++++ Running Anthropic claude-3-5-sonnet LLM")
-            # print (" +++LLM++++ Running Anthropic claude-3-opus LLM")
-            # print (" +++LLM++++ Running Anthropic claude-3-sonnet LLM")
-            # print (" +++LLM++++ Running Anthropic claude-3-haiku LLM")
         
         # ++++ MISTRAL-LARGE ++++
         if enableUltraMistral:
@@ -177,13 +169,7 @@ class AILLMServer:
         if enableOther:
             self.provider_llm = ProviderLLM.LOCAL
             self.cached_llm = Ollama(model="mistral-nemo:latest") # MODEL WITH A CONTEXT LENGTH OF 128Kb
-            # self.cached_llm = Ollama(model="llama3.1")
-            # self.cached_llm.num_ctx = 131072
-            # self.cached_llm.num_ctx = 32768
-            # self.cached_llm.num_ctx = 16384
-            # self.cached_llm.num_gpu = 1
             print ("Running LOCAL OLLAMA mistral-nemo 128K LLM")
-            # print ("Running LOCAL OLLAMA llama3.1 LLM")
 
         self.cached_llm.temperature = 0.7
                                   
@@ -555,12 +541,12 @@ class AILLMServer:
                     json_messages = []
                     messages = self.sqlFunctions.get_list_messages(historyJSON)
                     for user_msg, ai_msg in messages:
-                        json_object_user = { "mode": 1, "text": user_msg }
+                        json_object_user = { "Mode": 1, "Text": user_msg }
                         json_messages.append(json_object_user)
-                        json_object_ai = { "mode": 0, "text": ai_msg }
+                        json_object_ai = { "Mode": 0, "Text": ai_msg }
                         json_messages.append(json_object_ai)
 
-                    output = json.dumps(json_messages, indent=4)  
+                    output = json.dumps(json_messages)  
         
                 print (output)
                 
@@ -1684,39 +1670,28 @@ class AILLMServer:
                 else:
                     return None                
             else:
-                client = Client(self.url_flux_image_generation)
-                result = client.predict(
-                                width=width,
-                                height=height,
-                                num_steps=steps,
-                                guidance=3.5,
-                                seed="-1",
-                                prompt=description,
-                                init_image=None,
-                                image2image_strength=0.8,
-                                add_sampling_metadata=True,
-                                api_name="/generate_image"
-                )
-                print(result)
+                # Define the URL and the payload to send.
+                url = self.url_flux_image_generation
+
+                payload = {
+                    "width": width,
+                    "height": height,
+                    "num_steps": steps,
+                    "guidance": 3.5,
+                    "seed": -1,
+                    "prompt": description,
+                    "init_image": None,
+                    "image2image_strength": 0.8,
+                    "add_sampling_metadata": True                    
+                }
 
                 self.store_last_operation_cost(username + "_cost", 0)
+
+                # Send said payload to said URL through the API.
+                response = requests.post(url=f'{url}/generate_image', json=payload)
+                r = response.json()
+                return base64.b64decode(r['generated_image'])
             
-                img_webp_path = result[0]
-                img_data_path = result[2]
-
-                if img_data_path:
-                    with open(img_data_path, 'rb') as file:
-                        file_bytes = file.read()
-
-                    length_of_bytes = len(file_bytes)
-                    print(f"Length of file bytes: {length_of_bytes}")
-                    
-                    os.remove(img_webp_path)
-                    os.remove(img_data_path)
-                    return file_bytes
-                else:
-                    return None
-
     def closest_aspect_ratio(self, width, height):
         # Calculate the aspect ratio
         aspect_ratio = width / height

@@ -359,8 +359,9 @@ class InstructionsAI:
 
         # ++++++++++++++++++++
         # ++ TRANSLATE TEXT ++ 
-        self.templateTranslation = """Die KI soll den Text auf Deutsch übersetzen, basierend auf den Informationen des Nutzers.
+        self.templateTranslation = """Die KI muss den Text, der im XML-Tag <textsource> enthalten ist, ins Deutsche übersetzen.
+        
                     Aktuelles Gespräch:
                     {history}
-                    Mensch: {input}
+                    <textsource> {input} </textsource>
                     KI-Assistent:"""   

@@ -360,9 +360,9 @@ class InstructionsAI:
 
         # ++++++++++++++++++++
         # ++ TRANSLATE TEXT ++ 
-        self.templateTranslation = """L'AI deve tradurre il testo in italiano utilizzando le informazioni fornite dall'utente.
+        self.templateTranslation = """L'IA deve tradurre il testo contenuto nel tag XML <textsource> in italiano.
 
                     Conversazione corrente:
                     {history}
-                    Utente: {input}
+                    <textsource> {input} </textsource>
                     Assistente IA:"""   

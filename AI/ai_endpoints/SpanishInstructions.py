@@ -400,9 +400,9 @@ class InstructionsAI:
 
         # ++++++++++++++++++++
         # ++ TRANSLATE TEXT ++ 
-        self.templateTranslation = """La IA debe traducir el texto al idioma Español utilizando la información proporcionada por el humano.
+        self.templateTranslation = """La IA debe traducir el texto contenido dentro del tag XML <textsource> al idioma Español.
 
                     Conversación actual:
                     {history}
-                    Humano: {input}
+                    <textsource> {input} </textsource>
                     Asistente IA:"""   
